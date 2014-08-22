@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.example.plugin.adstream"
+    version="0.6.0">
+
+	<name>Adstream</name>
+    <repo>https://github.com/vilmar23/Plugin_TatpTap.git</repo>
+
+    <js-module src="www/adstream.js" name="Adstream">
+        <clobbers target="window.Adstream" />
+    </js-module>
+
+	<platform name="android">
+
+		<config-file target="res/xml/config.xml" parent="/*">
+          <feature name="Adstream" >
+              <param name="android-package" value="com.example.plugin.Adstream"/>
+          </feature>
+		</config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+             <meta-data android:name="adstream_appkey" android:value= "53299b2a4ae5187033d82d1e"/>
+             <meta-data android:name="adstream_appkeytablet" android:value= "53299b2a4ae5187033d82d1f"/>
+             <activity
+                android:name="com.taptap.adstream.AdstreamActivity">
+             </activity>
+        </config-file>
+
+		<source-file src="src/android/Adstream.java" target-dir="src/com/example/plugin/" />
+    </platform>
+
+
+</plugin>
