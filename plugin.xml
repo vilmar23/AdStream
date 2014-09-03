@@ -26,7 +26,7 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
              <activity
-                android:name="com.taptap.adstream.AdstreamActivity">
+                android:name="com.example.plugin.MainApp">
              </activity>
         </config-file>
 
