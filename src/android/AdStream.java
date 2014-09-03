@@ -19,13 +19,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.ggg.sasv2.SmartAdServer
+import com.ggg.sasv2.SmartAdServer;
 
 
 /**
  * This class echoes a string called from JavaScript.
  */
-public class AdStream extends CordovaPlugin{
+public class Adstream extends CordovaPlugin{
 
 
 
