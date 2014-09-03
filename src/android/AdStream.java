@@ -42,8 +42,13 @@ public class Adstream extends CordovaPlugin{
         super.initialize(cordova, webView);
         interfaz = cordova;
         vista = webView;
-     //   SASV2Configurations.enableDebugMode();
-     //   SASV2Configurations.USE_SAS_ID_EXAMPLE=true;
+        SASV2Configurations.enableDebugMode();
+
+    	/*SASV2Configurations.ID_SITE=54391;
+    		SASV2Configurations.ID_BANNER=19065;
+    		SASV2Configurations.ID_INTERSTICIAL=19066;
+    		SASV2Configurations.ID_VIDEOBANNNER=19298;   */
+        SASV2Configurations.USE_SAS_ID_EXAMPLE=true;
 
         //this.cordova.getActivity().setContentView(cordova.getActivity());
         Log.i(LOG_TAG,"initialize de AdStream");
