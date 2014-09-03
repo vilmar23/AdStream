@@ -1,4 +1,4 @@
-package com.example.sampleapp;
+package com.example.plugin;
 
 import android.app.Application;
 
