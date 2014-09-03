@@ -19,7 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.ggg.sasv2.SmartAdServer;
+import com.ggg.sasv2.SmartAdServer
 
 
 /**
@@ -29,48 +29,56 @@ public class AdStream extends CordovaPlugin{
 
 
 
+    public SonataAdView adView;
     protected LinearLayout root;// original Cordova layout
     protected CordovaInterface interfaz;
     protected CordovaWebView vista;
+    public SonataAdListener listener;
     private static final String LOG_TAG = "SonataPlugin";
 
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        //super.initialize(cordova, webView);
-
+        super.initialize(cordova, webView);
+        interfaz = cordova;
+        vista = webView;
         SASV2Configurations.enableDebugMode();
         SASV2Configurations.USE_SAS_ID_EXAMPLE=true;
+
+        //this.cordova.getActivity().setContentView(cordova.getActivity());
         Log.i(LOG_TAG,"initialize de AdStream");
 
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      SmartAdServer.getInstance().onCreate(MainActivity.this);
-    }
-
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        SmartAdServer.getInstance().onStop();
+    public void onStart(SonataAdView adView){
+    	Log.i(LOG_TAG,"Empieza un anuncio");
     }
 
     @Override
-    public void onBackPressed() {
-        if(SmartAdServer.getInstance().onBackPressed()==false){
-            super.onBackPressed();
-        } else
-            return;
-     }
+    public void onAdShown(SonataAdView adView){
+    	Log.i(LOG_TAG,"Se muetsra el anuncio");
+    }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-      SmartAdServer.getInstance().onKeyUp(keyCode, event);
-      return super.onKeyUp(keyCode, event);
+    public void onAdClosed(SonataAdView adView, String motive){
+    	Log.i(LOG_TAG,"Se cierra el anuncio por"+motive);
+    }
+
+    @Override
+    public void onNotAdReceived(SonataAdView adView){
+    	Log.i(LOG_TAG,"No se recibio el anuncio");
+    }
+
+    @Override
+    public void onError(SonataAdView adView, String error){
+    	Log.i(LOG_TAG,"Error de sonata por: "+error);
+    }
+
+    @Override
+    public void onPause(boolean multitasking) {
+       super.onPause(multitasking);
+        if (adView != null ) adView.hide();
     }
 
     @Override
@@ -78,7 +86,7 @@ public class AdStream extends CordovaPlugin{
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
         if (action.equals("create")) {
-        	Log.i(LOG_TAG,"create de AdStream");
+        	Log.i(LOG_TAG,"create de Sonata");
         	creaAnuncio();
         }else if(action.equals("muestra")){
         	Log.i(LOG_TAG,"muestra anuncio");
@@ -112,7 +120,10 @@ public class AdStream extends CordovaPlugin{
     }
 
     private void muestraAnuncio(){
-    	SmartAdServer.getInstance().onCreate(MainActivity.this);
+    	if(adView!=null){
+		    adView.show();
+    	}
     }
 
 }
+

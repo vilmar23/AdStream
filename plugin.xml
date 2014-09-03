@@ -25,8 +25,6 @@
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-             <meta-data android:name="adstream_appkey" android:value= "53299b2a4ae5187033d82d1e"/>
-             <meta-data android:name="adstream_appkeytablet" android:value= "53299b2a4ae5187033d82d1f"/>
              <activity
                 android:name="com.taptap.adstream.AdstreamActivity">
              </activity>
