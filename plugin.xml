@@ -31,6 +31,7 @@
         </config-file>
 
 		<source-file src="src/android/Adstream.java" target-dir="src/com/example/plugin/" />
+		<source-file src="src/android/MainApp.java" target-dir="src/com/example/plugin/" />
     </platform>
 
 
