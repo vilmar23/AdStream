@@ -8,7 +8,7 @@
     <repo>https://github.com/vilmar23/Plugin_TatpTap.git</repo>
 
     <js-module src="www/adstream.js" name="Adstream">
-        <clobbers target="window.Adstream" />
+        <clobbers target="window.AdStream" />
     </js-module>
 
 	<platform name="android">

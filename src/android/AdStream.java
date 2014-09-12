@@ -15,10 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.LinearLayout;
 
+import android.view.KeyEvent;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.ggg.sasv2.SASV2Configurations;
 import com.ggg.sasv2.SmartAdServer;
 
 
@@ -29,11 +31,11 @@ public class Adstream extends CordovaPlugin{
 
 
 
-    public SonataAdView adView;
+    //public SonataAdView adView;
     protected LinearLayout root;// original Cordova layout
     protected CordovaInterface interfaz;
     protected CordovaWebView vista;
-    public SonataAdListener listener;
+   // public SonataAdListener listener;
     private static final String LOG_TAG = "SonataPlugin";
 
 
@@ -55,6 +57,31 @@ public class Adstream extends CordovaPlugin{
 
     }
 
+
+
+    public void onStop() {
+           SmartAdServer.getInstance().onStop();
+      }
+
+
+     public void onBackPressed() {
+
+	      if(SmartAdServer.getInstance().onBackPressed()==false){
+	              //super.onBackPressed();
+	      } else
+              return;
+
+     }
+
+
+     public void onKeyUp(int keyCode, KeyEvent event) {
+
+    	SmartAdServer.getInstance().onKeyUp(keyCode, event);
+
+    	//return super.onKeyUp(keyCode, event);
+     }
+
+    /*
     @Override
     public void onStart(SonataAdView adView){
     	Log.i(LOG_TAG,"Empieza un anuncio");
@@ -84,14 +111,14 @@ public class Adstream extends CordovaPlugin{
     public void onPause(boolean multitasking) {
        super.onPause(multitasking);
         if (adView != null ) adView.hide();
-    }
+    }*/
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         PluginResult.Status status = PluginResult.Status.OK;
         String result = "";
         if (action.equals("create")) {
-        	Log.i(LOG_TAG,"create de Sonata");
+        	Log.i(LOG_TAG,"create de AdStream");
         	creaAnuncio();
         }else if(action.equals("muestra")){
         	Log.i(LOG_TAG,"muestra anuncio");
@@ -107,7 +134,7 @@ public class Adstream extends CordovaPlugin{
         	@Override
             public void run() {
 		        // Crea el SonataAdView
-		        adView = new SonataAdView(interfaz.getActivity());
+		        /*adView = new SonataAdView(interfaz.getActivity());
 
 		        adView.setSection("EsRadio Home");
 
@@ -118,17 +145,37 @@ public class Adstream extends CordovaPlugin{
 		        root.addView(adView,0);
 
 		        //Inicia el proceso para mostrar ads
-		        adView.show();
+		        adView.show();*/
+        		SmartAdServer.getInstance().onCreate(interfaz.getActivity());
         	}
         });
 
     }
 
     private void muestraAnuncio(){
-    	if(adView!=null){
+    	cordova.getActivity().runOnUiThread(new Runnable() {
+
+        	@Override
+            public void run() {
+		        // Crea el SonataAdView
+		        /*adView = new SonataAdView(interfaz.getActivity());
+
+		        adView.setSection("EsRadio Home");
+
+		        //es “android:id=”@+id/layout_id”
+		        root = (LinearLayout) vista.getParent();
+
+		        //Añade la vista al layout
+		        root.addView(adView,0);
+
+		        //Inicia el proceso para mostrar ads
+		        adView.show();*/
+        		SmartAdServer.getInstance().onCreate(interfaz.getActivity());
+        	}
+        });
+    	/*if(adView!=null){
 		    adView.show();
-    	}
+    	}*/
     }
 
 }
-
