@@ -11,8 +11,7 @@ public class StreamActivity extends Activity {
 
 	private Intent intent = null;
 
-    @Override
-    protected void onCreate() {
+    protected void CreaPub() {
 
 
         SmartAdServer.getInstance().onCreate(StreamActivity.this);

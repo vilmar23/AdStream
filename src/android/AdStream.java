@@ -135,7 +135,7 @@ public class Adstream extends CordovaPlugin{
     private void creaAnuncio(){
 
 
-       this.activity.onCreate();
+       this.activity.CreaPub();
 
 
     }
