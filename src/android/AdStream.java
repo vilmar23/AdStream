@@ -138,17 +138,18 @@ public class Adstream extends CordovaPlugin{
     private void muestraAnuncio(){
 
     	cordova.getActivity().runOnUiThread(new Runnable() {
-        @Override
-        public void run() {
-            Context context = cordova.getActivity()
-                    .getApplicationContext();
-            Intent intent = new Intent(context, StreamActivity.class);
-            cordova.getActivity().startActivity(intent);
-        }
-    });
+          @Override
+          public void run() {
+              Context context = cordova.getActivity()
+                      .getApplicationContext();
+              Intent intent = new Intent(context, StreamActivity.class);
+              cordova.getActivity().startActivity(intent);
+          }
+      });
 
     	/*if(adView!=null){
 		    adView.show();
     	}*/
     }
+}
 
