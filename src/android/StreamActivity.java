@@ -12,22 +12,22 @@ public class StreamActivity extends Activity {
 	private Intent intent = null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate() {
 
-        SmartAdServer.getInstance().onCreate(this);
+
+        SmartAdServer.getInstance().onCreate(StreamActivity.this);
     }
 
 
     @Override
     protected void onStop() {
     	SmartAdServer.getInstance().onStop();
-    	super.onStop();
+
     }
 
     @Override
     protected void onDestroy() {
     	SmartAdServer.getInstance().onDestroy();
-    	super.onDestroy();
+
     }
 }
