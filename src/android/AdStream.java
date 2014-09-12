@@ -36,7 +36,7 @@ public class Adstream extends CordovaPlugin{
     protected CordovaInterface interfaz;
     protected CordovaWebView vista;
    // public SonataAdListener listener;
-    private static final String LOG_TAG = "SonataPlugin";
+    private static final String LOG_TAG = "AdStreamPlugin";
 
 
     @Override
