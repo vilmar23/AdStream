@@ -23,6 +23,8 @@ import android.util.Log;
 import com.ggg.sasv2.SASV2Configurations;
 import com.ggg.sasv2.SmartAdServer;
 
+import com.example.plugin.StreamActivity;
+
 
 /**
  * This class echoes a string called from JavaScript.
@@ -37,6 +39,7 @@ public class Adstream extends CordovaPlugin{
     protected CordovaWebView vista;
    // public SonataAdListener listener;
     private static final String LOG_TAG = "AdStreamPlugin";
+    private StreamActivity activity = null;
 
 
     @Override
@@ -45,6 +48,8 @@ public class Adstream extends CordovaPlugin{
         interfaz = cordova;
         vista = webView;
         SASV2Configurations.enableDebugMode();
+
+        this.activity = (StreamActivity) cordova.getActivity();
 
     	/*SASV2Configurations.ID_SITE=54391;
     		SASV2Configurations.ID_BANNER=19065;
@@ -130,22 +135,14 @@ public class Adstream extends CordovaPlugin{
     private void creaAnuncio(){
 
 
-       // SmartAdServer.getInstance().onCreate(interfaz.getActivity());
+       this.activity.onCreate();
 
 
     }
 
     private void muestraAnuncio(){
 
-    	cordova.getActivity().runOnUiThread(new Runnable() {
-          @Override
-          public void run() {
-              Context context = cordova.getActivity()
-                      .getApplicationContext();
-              Intent intent = new Intent(context, StreamActivity.class);
-              cordova.getActivity().startActivity(intent);
-          }
-      });
+        this.activity.onCreate();
 
     	/*if(adView!=null){
 		    adView.show();
