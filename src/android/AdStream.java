@@ -129,53 +129,26 @@ public class Adstream extends CordovaPlugin{
 
     private void creaAnuncio(){
 
-    	cordova.getActivity().runOnUiThread(new Runnable() {
 
-        	@Override
-            public void run() {
-		        // Crea el SonataAdView
-		        /*adView = new SonataAdView(interfaz.getActivity());
+       // SmartAdServer.getInstance().onCreate(interfaz.getActivity());
 
-		        adView.setSection("EsRadio Home");
-
-		        //es “android:id=”@+id/layout_id”
-		        root = (LinearLayout) vista.getParent();
-
-		        //Añade la vista al layout
-		        root.addView(adView,0);
-
-		        //Inicia el proceso para mostrar ads
-		        adView.show();*/
-        		SmartAdServer.getInstance().onCreate(interfaz.getActivity());
-        	}
-        });
 
     }
 
     private void muestraAnuncio(){
+
     	cordova.getActivity().runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+            Context context = cordova.getActivity()
+                    .getApplicationContext();
+            Intent intent = new Intent(context, StreamActivity.class);
+            cordova.getActivity().startActivity(intent);
+        }
+    });
 
-        	@Override
-            public void run() {
-		        // Crea el SonataAdView
-		        /*adView = new SonataAdView(interfaz.getActivity());
-
-		        adView.setSection("EsRadio Home");
-
-		        //es “android:id=”@+id/layout_id”
-		        root = (LinearLayout) vista.getParent();
-
-		        //Añade la vista al layout
-		        root.addView(adView,0);
-
-		        //Inicia el proceso para mostrar ads
-		        adView.show();*/
-        		SmartAdServer.getInstance().onCreate(interfaz.getActivity());
-        	}
-        });
     	/*if(adView!=null){
 		    adView.show();
     	}*/
     }
 
-}

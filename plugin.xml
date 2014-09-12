@@ -26,6 +26,7 @@
 
 
 		<source-file src="src/android/Adstream.java" target-dir="src/com/example/plugin/" />
+		<source-file src="src/android/StreamActivity.java" target-dir="src/com/example/plugin/" />
     </platform>
 
 
